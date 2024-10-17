@@ -7,8 +7,145 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Kindergarten {
+  id Int @id @default(autoincrement())
+
+  name             String
+  thumbnail        String?
+  address          String
+  shortDescription String?
+  description      String?
+  phone            String? @unique
+  email            String? @unique
+  website          String?
+
+  languages Language[] @relation("KindergartenToLanguage")
+
+  ageGroups      Int[]
+  openingHours   String[]
+  teachersCount  Int?
+  groups         Int?
+  mealPlan       String[]
+  sleepingPlaces Boolean?
+
+  facebook  String?
+  instagram String?
+  twitter   String?
+  youtube   String?
+  telegram  String?
+  whatsapp  String?
+  viber     String?
+
+  city         City                      @relation(fields: [cityId], references: [id])
+  cityId       Int
+  area         Area                      @relation(fields: [areaId], references: [id])
+  areaId       Int
+  localization KindergartenTranslation[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([name])
+  @@index([cityId])
+  @@index([areaId])
+}
+
+model KindergartenTranslation {
+  kindergartenId Int @id
+
+  name_ru String
+  name_ge String
+
+  address_ru String
+  address_ge String
+
+  shortDescription_ru String
+  shortDescription_ge String
+
+  description_ru String
+  description_ge String
+
+  kindergarten Kindergarten? @relation(fields: [kindergartenId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model School {
-  id          String @id @default(cuid())
-  name        String
-  description String
+  id Int @id @default(autoincrement())
+
+  name             String
+  thumbnail        String?
+  address          String
+  shortDescription String?
+  description      String?
+  phone            String? @unique
+  email            String? @unique
+  website          String?
+
+  languages Language[] @relation("SchoolToLanguage")
+
+  educationLevels  String[]
+  studentsTotal    Int
+  studentsInClass  Int
+  curriculums      String[]
+  extracurriculars String[]
+  pricePerYear     String[]
+
+  facebook  String?
+  instagram String?
+  twitter   String?
+  youtube   String?
+  telegram  String?
+  whatsapp  String?
+  viber     String?
+
+  city   City @relation(fields: [cityId], references: [id])
+  cityId Int
+  area   Area @relation(fields: [areaId], references: [id])
+  areaId Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([name])
+  @@index([cityId])
+  @@index([areaId])
+}
+
+model Language {
+  id Int @id @default(autoincrement())
+
+  name String
+  code String
+
+  schools       School[]       @relation("SchoolToLanguage")
+  kindergartens Kindergarten[] @relation("KindergartenToLanguage")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model City {
+  id Int @id @default(autoincrement())
+
+  name String
+
+  school       School[]
+  kindergarten Kindergarten[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Area {
+  id Int @id @default(autoincrement())
+
+  name String
+
+  school       School[]
+  kindergarten Kindergarten[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

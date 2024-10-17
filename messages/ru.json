@@ -1,0 +1,8 @@
+{
+  "HomePage": {
+    "title": "Привет, Next.js i18n"
+  },
+  "LanguageSwitcher": {
+    "currentLanguage": "Русский"
+  }
+}

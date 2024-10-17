@@ -1,4 +1,7 @@
 export { Button } from "./button";
+export { Checkbox } from "./checkbox";
+export { Container } from "./container";
+export { Input } from "./input";
 
 export {
   Card,
@@ -8,3 +11,5 @@ export {
   CardHeader,
   CardTitle,
 } from "./card";
+
+export { HoverCard, HoverCardContent, HoverCardTrigger } from "./hover-card";
