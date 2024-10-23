@@ -59,11 +59,11 @@ model KindergartenTranslation {
   address_ru String
   address_ge String
 
-  shortDescription_ru String
-  shortDescription_ge String
+  shortDescription_ru String?
+  shortDescription_ge String?
 
-  description_ru String
-  description_ge String
+  description_ru String?
+  description_ge String?
 
   kindergarten Kindergarten? @relation(fields: [kindergartenId], references: [id])
 

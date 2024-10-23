@@ -1,18 +1,16 @@
-import { LanguageSwitcher } from "@/features/i18n/language-switcher";
-import { Button } from "@/shared/ui";
-import { Heart, User } from "lucide-react";
+import { LanguageSwitcher } from "@/features/i18n/client";
 
 export const Actions = () => {
   return (
     <div className="flex items-center gap-2">
       <LanguageSwitcher />
-      <Button>
+      {/* <Button>
         <Heart />
-      </Button>
-      <Button variant="outline" className="flex items-center gap-1">
+      </Button> */}
+      {/* <Button variant="outline" className="flex items-center gap-1">
         <User />
         <span>Profile</span>
-      </Button>
+      </Button> */}
     </div>
   );
 };

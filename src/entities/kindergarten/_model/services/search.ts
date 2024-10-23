@@ -1,10 +1,13 @@
-import { LanguageApiRoutes } from "../constants/index";
 import { axiosInstance } from "@/shared/api/axios";
 import { Kindergarten } from "@prisma/client";
+import { KindergartenApiRoutes } from "../constants";
 
-export const getLanguages = async (query: string): Promise<Kindergarten[]> => {
+export const search = async (
+  locale: Locale,
+  query: string,
+): Promise<Kindergarten[]> => {
   const { data } = await axiosInstance.get<Kindergarten[]>(
-    LanguageApiRoutes.GET_LANGUAGES,
+    `/${locale}/${KindergartenApiRoutes.SEARCH}`,
     { params: { query } },
   );
 

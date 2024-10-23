@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Button,
   Card,
@@ -25,7 +23,7 @@ export const Filters: FC<Props> = ({ className }) => {
       <CardContent>
         <p className="font-bold mb-3">Язык преподавания</p>
         <div className="flex flex-col gap-2">
-          {/* {languages.map((item) => {
+          {/* {data?.map((item) => {
             return (
               <FilterCheckbox
                 key={item.id}

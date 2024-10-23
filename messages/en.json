@@ -1,6 +1,8 @@
 {
   "HomePage": {
-    "title": "Hello, Next.js i18n"
+    "title": "Education in Georgia",
+    "kindergartens": "Kindergartens",
+    "schools": "Schools"
   },
   "LanguageSwitcher": {
     "currentLanguage": "English"

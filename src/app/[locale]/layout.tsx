@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/shared/ui/utils";
-import { AppNavigation } from "@/widgets/app-navigation";
-import { AppHeader } from "@/widgets/app-header";
-import { AppFooter } from "@/widgets/app-footer";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { headers } from "next/headers";
+import { AppHeader } from "@/widgets/app-header";
+import { AppFooter } from "@/widgets/app-footer";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -43,7 +42,6 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <AppHeader />
-          <AppNavigation />
           <main className="flex-grow">{children}</main>
           <AppFooter />
         </NextIntlClientProvider>

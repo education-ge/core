@@ -1,3 +1,9 @@
+import { SearchInput } from "@/shared/ui";
+
 export const Search = () => {
-  return <input className="w-96" />;
+  return (
+    <div className="mx-10 justify-center">
+      <SearchInput className="w-[600px]" />
+    </div>
+  );
 };

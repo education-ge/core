@@ -1,6 +1,8 @@
 {
   "HomePage": {
-    "title": "გამარჯობა, Next.js i18n"
+    "title": "განათლება საქართველოში",
+    "kindergartens": "საბავშვო ბაღები",
+    "schools": "სკოლები"
   },
   "LanguageSwitcher": {
     "currentLanguage": "ქართული"

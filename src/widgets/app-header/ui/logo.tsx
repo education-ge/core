@@ -1,5 +1,5 @@
+import { Link } from "@/shared/i18n/routing";
 import { GraduationCap } from "lucide-react";
-import Link from "next/link";
 
 export const Logo = () => {
   return (

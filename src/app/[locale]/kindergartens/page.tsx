@@ -9,7 +9,6 @@ export default function KindergartensPage() {
   return (
     <Container className="mt-4 flex">
       <Filters />
-
       <div className="flex-1 ml-4">
         <h1 className="font-semibold text-2xl">{t("title")}</h1>
         <SchoolList />

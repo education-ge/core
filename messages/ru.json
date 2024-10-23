@@ -1,6 +1,8 @@
 {
   "HomePage": {
-    "title": "Привет, Next.js i18n"
+    "title": "Образование в Грузии",
+    "kindergartens": "Детские сады",
+    "schools": "Школы"
   },
   "LanguageSwitcher": {
     "currentLanguage": "Русский"
