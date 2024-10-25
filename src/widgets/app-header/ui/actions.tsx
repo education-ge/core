@@ -6,8 +6,8 @@ export const Actions = () => {
       <LanguageSwitcher />
       {/* <Button>
         <Heart />
-      </Button> */}
-      {/* <Button variant="outline" className="flex items-center gap-1">
+      </Button>
+      <Button variant="outline" className="flex items-center gap-1">
         <User />
         <span>Profile</span>
       </Button> */}

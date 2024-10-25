@@ -2,8 +2,8 @@
 
 import { ChangeEvent, FC, useState } from "react";
 import { cn } from "@/shared/ui/utils";
-import { FilterCheckboxProps } from "../model/types/filter-checkbox";
-import { Input } from "@/shared/ui";
+import { FilterCheckboxProps } from "../_model/types/filter-checkbox";
+import { Input, Skeleton } from "@/shared/ui";
 import { FilterCheckbox } from "./filter-checkbox";
 
 type Item = FilterCheckboxProps;
@@ -13,6 +13,7 @@ interface Props {
   items: Item[];
   defaultItems: Item[];
   limit?: number;
+  isLoading?: boolean;
   searchInputPlaceholder?: string;
   onChange?: (values: string[]) => void;
   defaultValue?: string[];
@@ -24,6 +25,7 @@ export const CheckboxFiltersGroup: FC<Props> = ({
   items,
   defaultItems,
   limit = 5,
+  isLoading,
   searchInputPlaceholder = "Поиск...",
   className,
   onChange,
@@ -35,6 +37,17 @@ export const CheckboxFiltersGroup: FC<Props> = ({
   const onChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
+
+  if (isLoading) {
+    return (
+      <div className={cn(className)}>
+        <p className="font-bold mb-3">{title}</p>
+        {...Array(limit)
+          .fill(0)
+          .map((_, index) => <Skeleton key={index} className="h-6 mb-2" />)}
+      </div>
+    );
+  }
 
   const list = isExpanded
     ? items.filter((item) =>

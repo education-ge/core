@@ -1,10 +1,14 @@
 {
-  "HomePage": {
-    "title": "განათლება საქართველოში",
+  "Common": {
+    "kindergarten": "საბავშვო ბაღი",
     "kindergartens": "საბავშვო ბაღები",
+    "school": "სკოლა",
     "schools": "სკოლები"
   },
-  "LanguageSwitcher": {
-    "currentLanguage": "ქართული"
+  "HomePage": {
+    "title": "განათლება საქართველოში"
+  },
+  "SearchInput": {
+    "placeholder": "იპოვნეთ საბავშვო ბაღი ან სკოლა"
   }
 }

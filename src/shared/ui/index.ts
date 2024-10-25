@@ -2,7 +2,7 @@ export { Button } from "./button";
 export { Checkbox } from "./checkbox";
 export { Container } from "./container";
 export { Input } from "./input";
-export { SearchInput } from "./search-input";
+export { Skeleton } from "./skeleton";
 
 export {
   Card,

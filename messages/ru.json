@@ -1,10 +1,14 @@
 {
-  "HomePage": {
-    "title": "Образование в Грузии",
+  "Common": {
+    "kindergarten": "Детский сад",
     "kindergartens": "Детские сады",
+    "school": "Школа",
     "schools": "Школы"
   },
-  "LanguageSwitcher": {
-    "currentLanguage": "Русский"
+  "HomePage": {
+    "title": "Образование в Грузии"
+  },
+  "SearchInput": {
+    "placeholder": "Найти детский сад или школу"
   }
 }

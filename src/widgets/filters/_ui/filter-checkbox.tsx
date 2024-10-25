@@ -1,7 +1,7 @@
 import { Checkbox } from "@/shared/ui";
 import { cn } from "@/shared/ui/utils";
 import { FC } from "react";
-import { FilterCheckboxProps } from "../model/types/filter-checkbox";
+import { FilterCheckboxProps } from "../_model/types/filter-checkbox";
 
 export const FilterCheckbox: FC<FilterCheckboxProps> = ({
   className,

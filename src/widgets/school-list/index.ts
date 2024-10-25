@@ -1,1 +1,1 @@
-export { SchoolList } from "./ui/school-list";
+export { SchoolList } from "./_ui/school-list";

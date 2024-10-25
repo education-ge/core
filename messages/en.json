@@ -1,10 +1,14 @@
 {
-  "HomePage": {
-    "title": "Education in Georgia",
+  "Common": {
+    "kindergarten": "Kindergarten",
     "kindergartens": "Kindergartens",
+    "school": "School",
     "schools": "Schools"
   },
-  "LanguageSwitcher": {
-    "currentLanguage": "English"
+  "HomePage": {
+    "title": "Education in Georgia"
+  },
+  "SearchInput": {
+    "placeholder": "Find a kindergarten or school"
   }
 }

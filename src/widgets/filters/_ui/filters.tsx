@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Button,
   Card,
@@ -8,13 +10,30 @@ import {
 } from "@/shared/ui";
 import { cn } from "@/shared/ui/utils";
 import { CheckboxFiltersGroup } from "./checkbox-filters-group";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
+import { Language, languageService } from "@/entities/language/client";
+import { FilterCheckbox } from "./filter-checkbox";
 
 interface Props {
   className?: string;
 }
 
 export const Filters: FC<Props> = ({ className }) => {
+  const [languages, setLanguages] = useState<Language[]>([]);
+
+  useEffect(() => {
+    const fetchLanguages = async () => {
+      try {
+        const data = await languageService.getLanguages();
+        setLanguages(data);
+      } catch (err) {
+        console.error("Failed to fetch languages:", err);
+      }
+    };
+
+    fetchLanguages();
+  }, []);
+
   return (
     <Card className={cn("w-80 sticky top-[72px] self-start", className)}>
       <CardHeader>
@@ -23,7 +42,7 @@ export const Filters: FC<Props> = ({ className }) => {
       <CardContent>
         <p className="font-bold mb-3">Язык преподавания</p>
         <div className="flex flex-col gap-2">
-          {/* {data?.map((item) => {
+          {languages?.map((item) => {
             return (
               <FilterCheckbox
                 key={item.id}
@@ -31,12 +50,13 @@ export const Filters: FC<Props> = ({ className }) => {
                 value={item.code}
               />
             );
-          })} */}
+          })}
         </div>
         <CheckboxFiltersGroup
           title="Районы"
           className="mt-5"
           limit={5}
+          // isLoading
           defaultItems={[
             {
               text: "Сабуртало",

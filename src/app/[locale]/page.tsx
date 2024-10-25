@@ -1,9 +1,11 @@
+import { SearchInput } from "@/features/search/client";
 import { Link } from "@/shared/i18n/routing";
-import { Button, Container, SearchInput } from "@/shared/ui";
+import { Button, Container } from "@/shared/ui";
 import { School, Shapes } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 export default function HomePage() {
+  const tCommon = useTranslations("Common");
   const t = useTranslations("HomePage");
 
   return (
@@ -16,13 +18,13 @@ export default function HomePage() {
         <Link href="/kindergartens">
           <Button className="w-80 h-40 bg-green-500 hover:bg-green-600 font-semibold text-2xl gap-4">
             <Shapes size={40} />
-            {t("kindergartens")}
+            {tCommon("kindergartens")}
           </Button>
         </Link>
         <Link href="/schools">
           <Button className="w-80 h-40 bg-blue-500 font-semibold text-2xl gap-4">
             <School size={40} />
-            {t("schools")}
+            {tCommon("schools")}
           </Button>
         </Link>
       </div>

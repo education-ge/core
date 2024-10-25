@@ -10,7 +10,6 @@ export const LanguageSwitcher = () => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const locale = useLocale();
-  // const t = useTranslations("LanguageSwitcher");
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const ref = useRef(null);
@@ -47,7 +46,7 @@ export const LanguageSwitcher = () => {
       {isOpen && (
         <ul
           ref={ref}
-          className="absolute left-1/2 transform -translate-x-1/2 bg-white border mt-2 w-24 rounded-md"
+          className="absolute right-0 transform bg-white border mt-2 w-24 rounded-md"
         >
           {availableLocales.map((lang) => (
             <li key={lang.code}>

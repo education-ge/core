@@ -5,19 +5,22 @@ import { cn } from "@/shared/ui/utils";
 import { Search } from "lucide-react";
 import { useClickAway, useDebounce } from "react-use";
 import Image from "next/image";
-import { kindergartenService } from "@/entities/kindergarten";
-import { Kindergarten } from "@prisma/client";
 import { Link } from "@/shared/i18n/routing";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import {
+  InstitutionListItem,
+  institutionService,
+} from "@/entities/institution";
 
 interface Props {
   className?: string;
 }
 
 export const SearchInput: FC<Props> = ({ className }) => {
+  const t = useTranslations("SearchInput");
   const [searchQuery, setSearchQuery] = useState("");
   const [isFocused, setIsFocused] = useState(false);
-  const [items, setItems] = useState<Kindergarten[]>([]);
+  const [items, setItems] = useState<InstitutionListItem[]>([]);
   const locale = useLocale();
   const ref = useRef(null);
 
@@ -26,10 +29,16 @@ export const SearchInput: FC<Props> = ({ className }) => {
   });
 
   useDebounce(
-    () => {
-      kindergartenService.search(locale, searchQuery).then((items) => {
-        setItems(items);
-      });
+    async () => {
+      try {
+        const response = await institutionService.searchByText(
+          locale,
+          searchQuery,
+        );
+        setItems(response);
+      } catch (error) {
+        console.error(error);
+      }
     },
     300,
     [locale, searchQuery],
@@ -57,7 +66,7 @@ export const SearchInput: FC<Props> = ({ className }) => {
           ref={ref}
           className="rounded-lg outline-none w-full bg-gray-100 pl-11"
           type="text"
-          placeholder="Search..."
+          placeholder={t("placeholder")}
           onFocus={() => setIsFocused(true)}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -73,7 +82,7 @@ export const SearchInput: FC<Props> = ({ className }) => {
               <Link
                 key={item.id}
                 // onClick={onClickItem}
-                href={`/kindergartens/${item.id}`}
+                href={`/${item.type}s/${item.id}`}
                 className="flex items-center gap-4 px-3 py-2 hover:bg-primary/10 cursor-pointer"
               >
                 <Image

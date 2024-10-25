@@ -10,14 +10,10 @@ datasource db {
 model Kindergarten {
   id Int @id @default(autoincrement())
 
-  name             String
-  thumbnail        String?
-  address          String
-  shortDescription String?
-  description      String?
-  phone            String? @unique
-  email            String? @unique
-  website          String?
+  thumbnail String?
+  phone     String? @unique
+  email     String? @unique
+  website   String?
 
   languages Language[] @relation("KindergartenToLanguage")
 
@@ -45,7 +41,6 @@ model Kindergarten {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([name])
   @@index([cityId])
   @@index([areaId])
 }
@@ -53,17 +48,21 @@ model Kindergarten {
 model KindergartenTranslation {
   kindergartenId Int @id
 
-  name_ru String
+  name_en String
   name_ge String
+  name_ru String
 
-  address_ru String
+  address_en String
   address_ge String
+  address_ru String
 
-  shortDescription_ru String?
+  shortDescription_en String?
   shortDescription_ge String?
+  shortDescription_ru String?
 
-  description_ru String?
+  description_en String?
   description_ge String?
+  description_ru String?
 
   kindergarten Kindergarten? @relation(fields: [kindergartenId], references: [id])
 
@@ -72,25 +71,16 @@ model KindergartenTranslation {
 }
 
 model School {
-  id Int @id @default(autoincrement())
+   id Int @id @default(autoincrement())
 
-  name             String
-  thumbnail        String?
-  address          String
-  shortDescription String?
-  description      String?
-  phone            String? @unique
-  email            String? @unique
-  website          String?
+  thumbnail String?
+  phone     String? @unique
+  email     String? @unique
+  website   String?
 
   languages Language[] @relation("SchoolToLanguage")
 
-  educationLevels  String[]
-  studentsTotal    Int
-  studentsInClass  Int
-  curriculums      String[]
-  extracurriculars String[]
-  pricePerYear     String[]
+  openingHours   String[]
 
   facebook  String?
   instagram String?
@@ -100,17 +90,42 @@ model School {
   whatsapp  String?
   viber     String?
 
-  city   City @relation(fields: [cityId], references: [id])
-  cityId Int
-  area   Area @relation(fields: [areaId], references: [id])
-  areaId Int
+  city         City                      @relation(fields: [cityId], references: [id])
+  cityId       Int
+  area         Area                      @relation(fields: [areaId], references: [id])
+  areaId       Int
+  localization SchoolTranslation[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@index([name])
   @@index([cityId])
   @@index([areaId])
+}
+
+model SchoolTranslation {
+  schoolId Int @id
+
+  name_en String
+  name_ge String
+  name_ru String
+
+  address_en String
+  address_ge String
+  address_ru String
+
+  shortDescription_en String?
+  shortDescription_ge String?
+  shortDescription_ru String?
+
+  description_en String?
+  description_ge String?
+  description_ru String?
+
+  school School? @relation(fields: [schoolId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Language {
