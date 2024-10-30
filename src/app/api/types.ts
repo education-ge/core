@@ -1,4 +1,4 @@
-export type LocaleFieldNames =
+export type InstitutionLocaleFieldNames =
   | `name_${Locale}`
   | `address_${Locale}`
   | `shortDescription_${Locale}`

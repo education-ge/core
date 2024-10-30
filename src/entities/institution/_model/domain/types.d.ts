@@ -1,1 +1,1 @@
-declare type Institution = "school" | "kindergarten";
+declare type InstitutionType = "school" | "kindergarten";

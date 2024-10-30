@@ -1,20 +1,21 @@
-import { InstitutionListItem } from "@/entities/institution";
+import { Institution } from "@/entities/institution/client";
 import { db } from "@/shared/lib/db";
 import { NextRequest, NextResponse } from "next/server";
-import { LocaleFieldNames } from "../../../types";
+import { InstitutionLocaleFieldNames } from "../../../types";
 
 export async function GET(req: NextRequest) {
   const query = req.nextUrl.searchParams.get("query") || "";
   const locale = req.nextUrl.pathname.split("/")[2] as Locale;
 
   const fieldNames = {
-    name: `name_${locale}` as LocaleFieldNames,
-    address: `address_${locale}` as LocaleFieldNames,
-    shortDescription: `shortDescription_${locale}` as LocaleFieldNames,
-    description: `description_${locale}` as LocaleFieldNames,
+    name: `name_${locale}` as InstitutionLocaleFieldNames,
+    address: `address_${locale}` as InstitutionLocaleFieldNames,
+    shortDescription:
+      `shortDescription_${locale}` as InstitutionLocaleFieldNames,
+    description: `description_${locale}` as InstitutionLocaleFieldNames,
   };
 
-  const kindergartens: InstitutionListItem[] = await db.kindergartenTranslation
+  const kindergartens: Institution[] = await db.kindergartenTranslation
     .findMany({
       where: {
         OR: [
@@ -35,7 +36,7 @@ export async function GET(req: NextRequest) {
         ],
       },
       include: {
-        kindergarten: true,
+        kindergarten: { include: { languages: true } },
       },
       take: 5,
     })
@@ -48,10 +49,14 @@ export async function GET(req: NextRequest) {
         address: translation[fieldNames.address] || "",
         shortDescription: translation[fieldNames.shortDescription] || null,
         description: translation[fieldNames.description] || null,
+        languageCodes:
+          translation.kindergarten?.languages.map(
+            (lang) => lang.code as Locale,
+          ) || [],
       })),
     );
 
-  const schools: InstitutionListItem[] = await db.schoolTranslation
+  const schools: Institution[] = await db.schoolTranslation
     .findMany({
       where: {
         OR: [
@@ -72,7 +77,7 @@ export async function GET(req: NextRequest) {
         ],
       },
       include: {
-        school: true,
+        school: { include: { languages: true } },
       },
       take: 5,
     })
@@ -85,6 +90,9 @@ export async function GET(req: NextRequest) {
         address: translation[fieldNames.address] || "",
         shortDescription: translation[fieldNames.shortDescription] || null,
         description: translation[fieldNames.description] || null,
+        languageCodes:
+          translation.school?.languages.map((lang) => lang.code as Locale) ||
+          [],
       })),
     );
 

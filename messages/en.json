@@ -3,12 +3,32 @@
     "kindergarten": "Kindergarten",
     "kindergartens": "Kindergartens",
     "school": "School",
-    "schools": "Schools"
+    "schools": "Schools",
+    "city": {
+      "tbilisi": "Tbilisi"
+    }
   },
   "HomePage": {
     "title": "Education in Georgia"
   },
+  "KindergartensPage": {
+    "title": "Kindergartens in Tbilisi"
+  },
+  "SchoolsPage": {
+    "title": "Schools in Tbilisi"
+  },
   "SearchInput": {
     "placeholder": "Find a kindergarten or school"
+  },
+  "Filters": {
+    "title": "Search parameters",
+    "languages": "Languages​",
+    "areas": "Districts",
+    "checkboxGroup": {
+      "placeholder": "Search...",
+      "hide": "Hide",
+      "showAll": "Show all"
+    },
+    "clear": "Clear"
   }
 }

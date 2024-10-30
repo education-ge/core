@@ -3,10 +3,10 @@ import { Language } from "../domain/language";
 import { LanguageApiRoutes } from "../constants";
 
 class LanguageService {
-  async getLanguages(): Promise<Language[]> {
+  async getLanguages(locale: Locale): Promise<Language[]> {
     try {
       const response = await axiosInstance.get<Language[]>(
-        LanguageApiRoutes.GET_LANGUAGES,
+        `${locale}/${LanguageApiRoutes.GET_LANGUAGES}`,
       );
       return response.data;
     } catch (error) {

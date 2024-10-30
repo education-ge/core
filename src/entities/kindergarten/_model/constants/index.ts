@@ -1,3 +1,3 @@
 export enum KindergartenApiRoutes {
-  SEARCH = "institution/search",
+  GET_ALL = "kindergartens",
 }

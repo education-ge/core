@@ -6,5 +6,6 @@
     "src/features/i18n",
     "src/shared/i18n",
     "src/app/api/languages"
-  ]
+  ],
+  "i18n-ally.keystyle": "nested"
 }

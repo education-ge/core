@@ -2,15 +2,13 @@
 
 import { FC, useRef, useState } from "react";
 import { cn } from "@/shared/ui/utils";
-import { Search } from "lucide-react";
+import { ImageOff, Search } from "lucide-react";
 import { useClickAway, useDebounce } from "react-use";
 import Image from "next/image";
 import { Link } from "@/shared/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
-import {
-  InstitutionListItem,
-  institutionService,
-} from "@/entities/institution";
+import { Institution, institutionService } from "@/entities/institution/client";
+import { InstitutionTypeIcon } from "@/entities/institution/server";
 
 interface Props {
   className?: string;
@@ -20,7 +18,7 @@ export const SearchInput: FC<Props> = ({ className }) => {
   const t = useTranslations("SearchInput");
   const [searchQuery, setSearchQuery] = useState("");
   const [isFocused, setIsFocused] = useState(false);
-  const [items, setItems] = useState<InstitutionListItem[]>([]);
+  const [items, setItems] = useState<Institution[]>([]);
   const locale = useLocale();
   const ref = useRef(null);
 
@@ -80,19 +78,27 @@ export const SearchInput: FC<Props> = ({ className }) => {
           >
             {items.map((item) => (
               <Link
-                key={item.id}
+                key={`${item.type}/${item.id}`}
                 // onClick={onClickItem}
                 href={`/${item.type}s/${item.id}`}
                 className="flex items-center gap-4 px-3 py-2 hover:bg-primary/10 cursor-pointer"
               >
-                <Image
-                  src={`/${item.thumbnail}`}
-                  alt={item.name}
-                  className="object-cover"
-                  width={120}
-                  height={120}
-                />
-                <span>{item.name}</span>
+                <div className="w-[90px] h-[60px] relative flex-shrink-0 overflow-hidden rounded-md flex justify-center items-center">
+                  {item.thumbnail ? (
+                    <Image
+                      src={`/${item.thumbnail}`}
+                      alt={item.name}
+                      className="object-cover"
+                      layout="fill"
+                    />
+                  ) : (
+                    <ImageOff size={60} className="text-slate-400" />
+                  )}
+                </div>
+                <div className="flex items-center justify-between flex-grow">
+                  <span>{item.name}</span>
+                  <InstitutionTypeIcon type={item.type} />
+                </div>
               </Link>
             ))}
           </div>

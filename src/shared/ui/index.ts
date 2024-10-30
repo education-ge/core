@@ -1,6 +1,7 @@
 export { Button } from "./button";
 export { Checkbox } from "./checkbox";
 export { Container } from "./container";
+export { HoverIcon } from "./hover-icon";
 export { Input } from "./input";
 export { Skeleton } from "./skeleton";
 

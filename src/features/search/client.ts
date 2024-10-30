@@ -1,2 +1,1 @@
-export { SearchInput } from './_ui/search-input'
-
+export { SearchInput } from "./_ui/search-input";

@@ -9,22 +9,26 @@ import {
   CardTitle,
 } from "@/shared/ui";
 import { cn } from "@/shared/ui/utils";
-import { CheckboxFiltersGroup } from "./checkbox-filters-group";
+import { CheckboxGroup } from "./checkbox-group";
 import { FC, useEffect, useState } from "react";
 import { Language, languageService } from "@/entities/language/client";
 import { FilterCheckbox } from "./filter-checkbox";
+import { useLocale, useTranslations } from "next-intl";
 
 interface Props {
   className?: string;
 }
 
 export const Filters: FC<Props> = ({ className }) => {
+  const t = useTranslations("Filters");
+  const locale = useLocale();
+
   const [languages, setLanguages] = useState<Language[]>([]);
 
   useEffect(() => {
     const fetchLanguages = async () => {
       try {
-        const data = await languageService.getLanguages();
+        const data = await languageService.getLanguages(locale);
         setLanguages(data);
       } catch (err) {
         console.error("Failed to fetch languages:", err);
@@ -37,10 +41,10 @@ export const Filters: FC<Props> = ({ className }) => {
   return (
     <Card className={cn("w-80 sticky top-[72px] self-start", className)}>
       <CardHeader>
-        <CardTitle>Filters</CardTitle>
+        <CardTitle>{t("title")}</CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="font-bold mb-3">Язык преподавания</p>
+        <p className="font-bold mb-3">{t("languages")}</p>
         <div className="flex flex-col gap-2">
           {languages?.map((item) => {
             return (
@@ -52,8 +56,8 @@ export const Filters: FC<Props> = ({ className }) => {
             );
           })}
         </div>
-        <CheckboxFiltersGroup
-          title="Районы"
+        <CheckboxGroup
+          title={t("areas")}
           className="mt-5"
           limit={5}
           // isLoading
@@ -136,7 +140,7 @@ export const Filters: FC<Props> = ({ className }) => {
         />
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline">Cancel</Button>
+        <Button variant="outline">{t("clear")}</Button>
       </CardFooter>
     </Card>
   );

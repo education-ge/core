@@ -2,13 +2,15 @@
 
 import { Link, usePathname } from "@/shared/i18n/routing";
 import { Button, Container } from "@/shared/ui";
+import { useTranslations } from "next-intl";
 
 const navItems = [
-  { href: "/kindergartens", label: "Kindergartens" },
-  { href: "/schools", label: "Schools" },
+  { href: "/kindergartens", label: "kindergartens" },
+  { href: "/schools", label: "schools" },
 ];
 
 export const AppNavigation = () => {
+  const t = useTranslations("Common");
   const pathname = usePathname();
 
   const buttonBaseClasses = "rounded-none border-b-2";
@@ -27,7 +29,7 @@ export const AppNavigation = () => {
               }`}
               aria-current={isActive(item.href) ? "page" : undefined}
             >
-              {item.label}
+              {t(item.label)}
             </Button>
           </Link>
         ))}

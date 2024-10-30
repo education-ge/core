@@ -3,12 +3,32 @@
     "kindergarten": "საბავშვო ბაღი",
     "kindergartens": "საბავშვო ბაღები",
     "school": "სკოლა",
-    "schools": "სკოლები"
+    "schools": "სკოლები",
+    "city": {
+      "tbilisi": "თბილისი"
+    }
   },
   "HomePage": {
     "title": "განათლება საქართველოში"
   },
+  "KindergartensPage": {
+    "title": "საბავშვო ბაღები თბილისში"
+  },
+  "SchoolsPage": {
+    "title": "სკოლები თბილისში"
+  },
   "SearchInput": {
     "placeholder": "იპოვნეთ საბავშვო ბაღი ან სკოლა"
+  },
+  "Filters": {
+    "title": "ძიების პარამეტრები",
+    "languages": "სწავლების ენები",
+    "areas": "ოლქები",
+    "checkboxGroup": {
+      "placeholder": "ძებნა...",
+      "hide": "დამალვა",
+      "showAll": "ყველას ჩვენება"
+    },
+    "clear": "წმინდა"
   }
 }

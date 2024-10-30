@@ -71,7 +71,7 @@ model KindergartenTranslation {
 }
 
 model School {
-   id Int @id @default(autoincrement())
+  id Int @id @default(autoincrement())
 
   thumbnail String?
   phone     String? @unique
@@ -80,7 +80,7 @@ model School {
 
   languages Language[] @relation("SchoolToLanguage")
 
-  openingHours   String[]
+  openingHours String[]
 
   facebook  String?
   instagram String?
@@ -90,9 +90,9 @@ model School {
   whatsapp  String?
   viber     String?
 
-  city         City                      @relation(fields: [cityId], references: [id])
+  city         City                @relation(fields: [cityId], references: [id])
   cityId       Int
-  area         Area                      @relation(fields: [areaId], references: [id])
+  area         Area                @relation(fields: [areaId], references: [id])
   areaId       Int
   localization SchoolTranslation[]
 
@@ -131,7 +131,10 @@ model SchoolTranslation {
 model Language {
   id Int @id @default(autoincrement())
 
-  name String
+  name_en String
+  name_ge String
+  name_ru String
+  
   code String
 
   schools       School[]       @relation("SchoolToLanguage")
@@ -144,7 +147,9 @@ model Language {
 model City {
   id Int @id @default(autoincrement())
 
-  name String
+  name_en String
+  name_ge String
+  name_ru String
 
   school       School[]
   kindergarten Kindergarten[]
@@ -156,7 +161,9 @@ model City {
 model Area {
   id Int @id @default(autoincrement())
 
-  name String
+  name_en String
+  name_ge String
+  name_ru String
 
   school       School[]
   kindergarten Kindergarten[]

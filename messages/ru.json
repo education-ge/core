@@ -3,12 +3,32 @@
     "kindergarten": "Детский сад",
     "kindergartens": "Детские сады",
     "school": "Школа",
-    "schools": "Школы"
+    "schools": "Школы",
+    "city": {
+      "tbilisi": "Тбилиси"
+    }
   },
   "HomePage": {
     "title": "Образование в Грузии"
   },
+  "KindergartensPage": {
+    "title": "Детские сады в Тбилиси"
+  },
+  "SchoolsPage": {
+    "title": "Школы в Тбилиси"
+  },
   "SearchInput": {
     "placeholder": "Найти детский сад или школу"
+  },
+  "Filters": {
+    "title": "Параметры поиска",
+    "languages": "Языки преподавания",
+    "areas": "Районы",
+    "checkboxGroup": {
+      "placeholder": "Поиск...",
+      "hide": "Скрыть",
+      "showAll": "Показать все"
+    },
+    "clear": "Очистить"
   }
 }

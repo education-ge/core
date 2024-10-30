@@ -1,7 +1,7 @@
-import { InstitutionListItem } from "@/entities/institution";
+import { Institution } from "@/entities/institution/client";
 import { db } from "@/shared/lib/db";
 import { NextRequest, NextResponse } from "next/server";
-import { LocaleFieldNames } from "../../../types";
+import { InstitutionLocaleFieldNames } from "../../../types";
 
 export async function GET(req: NextRequest) {
   const locale = req.nextUrl.pathname.split("/")[2] as Locale;
@@ -9,10 +9,11 @@ export async function GET(req: NextRequest) {
   const count = countParam ? parseInt(countParam) : 5;
 
   const fieldNames = {
-    name: `name_${locale}` as LocaleFieldNames,
-    address: `address_${locale}` as LocaleFieldNames,
-    shortDescription: `shortDescription_${locale}` as LocaleFieldNames,
-    description: `description_${locale}` as LocaleFieldNames,
+    name: `name_${locale}` as InstitutionLocaleFieldNames,
+    address: `address_${locale}` as InstitutionLocaleFieldNames,
+    shortDescription:
+      `shortDescription_${locale}` as InstitutionLocaleFieldNames,
+    description: `description_${locale}` as InstitutionLocaleFieldNames,
   };
 
   const totalCount = await db.kindergarten.count();
@@ -29,7 +30,7 @@ export async function GET(req: NextRequest) {
     },
   });
 
-  const institutions: InstitutionListItem[] = randomKindergartens.map(
+  const institutions: Institution[] = randomKindergartens.map(
     (kindergarten) => {
       const translation = translations.find(
         (t) => t.kindergartenId === kindergarten.id,
