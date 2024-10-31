@@ -7,4 +7,5 @@ export interface FilterCheckboxProps {
   endAdornment?: ReactNode;
   onCheckedChange?: (checked: boolean) => void;
   checked?: boolean;
+  name?: string;
 }

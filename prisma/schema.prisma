@@ -134,7 +134,7 @@ model Language {
   name_en String
   name_ge String
   name_ru String
-  
+
   code String
 
   schools       School[]       @relation("SchoolToLanguage")
@@ -151,6 +151,7 @@ model City {
   name_ge String
   name_ru String
 
+  areas        Area[]
   school       School[]
   kindergarten Kindergarten[]
 
@@ -165,6 +166,8 @@ model Area {
   name_ge String
   name_ru String
 
+  city         City           @relation(fields: [cityId], references: [id])
+  cityId       Int
   school       School[]
   kindergarten Kindergarten[]
 

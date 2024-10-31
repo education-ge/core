@@ -12,12 +12,14 @@ type Item = FilterCheckboxProps;
 interface Props {
   title: string;
   items: Item[];
-  defaultItems: Item[];
+  defaultItems?: Item[];
   limit?: number;
   isLoading?: boolean;
   searchInputPlaceholder?: string;
-  onChange?: (values: string[]) => void;
+  onClickCheckbox?: (id: string) => void;
   defaultValue?: string[];
+  name?: string;
+  selected?: Set<string>;
   className?: string;
 }
 
@@ -28,8 +30,10 @@ export const CheckboxGroup: FC<Props> = ({
   limit = 5,
   isLoading,
   searchInputPlaceholder,
-  onChange,
-  defaultValue,
+  onClickCheckbox,
+  // defaultValue,
+  name,
+  selected,
   className,
 }) => {
   const t = useTranslations("Filters");
@@ -54,9 +58,9 @@ export const CheckboxGroup: FC<Props> = ({
 
   const list = isExpanded
     ? items.filter((item) =>
-        item.text.toLowerCase().includes(searchValue.toLowerCase()),
+        item.text.toLowerCase().includes(searchValue.toLocaleLowerCase()),
       )
-    : defaultItems.slice(0, limit);
+    : (defaultItems || items).slice(0, limit);
 
   return (
     <div className={cn(className)}>
@@ -78,9 +82,10 @@ export const CheckboxGroup: FC<Props> = ({
             key={index}
             text={item.text}
             value={item.value}
-            checked={false}
-            // onCheckedChange={() => onChange(item.value)}
+            onCheckedChange={() => onClickCheckbox?.(item.value)}
             endAdornment={item.endAdornment}
+            name={name}
+            checked={selected?.has(item.value)}
           />
         ))}
       </div>
