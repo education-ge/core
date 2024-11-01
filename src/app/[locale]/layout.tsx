@@ -7,6 +7,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { headers } from "next/headers";
 import { AppHeader } from "@/widgets/app-header";
 import { AppFooter } from "@/widgets/app-footer";
+import ReactQueryProvider from "./_providers/react-query-provider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -41,9 +42,11 @@ export default async function RootLayout({
         )}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <AppHeader />
-          <main className="flex-grow">{children}</main>
-          <AppFooter />
+          <ReactQueryProvider>
+            <AppHeader />
+            <main className="flex-grow">{children}</main>
+            <AppFooter />
+          </ReactQueryProvider>
         </NextIntlClientProvider>
       </body>
     </html>

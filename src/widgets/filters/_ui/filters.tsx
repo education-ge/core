@@ -10,12 +10,12 @@ import {
 } from "@/shared/ui";
 import { cn } from "@/shared/ui/utils";
 import { CheckboxGroup } from "./checkbox-group";
-import { FC, useEffect, useState } from "react";
-import { Language, languageService } from "@/entities/language/client";
+import { FC } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useFilters } from "../_model/use-filters";
-import { Area, areaService } from "@/entities/city/client";
 import { useQueryFilters } from "../_model/use-filters-query";
+import { useGetLanguages } from "@/features/i18n/client";
+import { useGetAreasByCityId } from "@/features/city/server";
 
 interface Props {
   className?: string;
@@ -26,33 +26,15 @@ export const Filters: FC<Props> = ({ className }) => {
   const locale = useLocale();
   const filters = useFilters();
 
+  const { data: languages, isLoading: isLanguagesLoading } = useGetLanguages({
+    locale,
+  });
+  const { data: areas, isLoading: isAreasLoading } = useGetAreasByCityId({
+    locale,
+    cityId: 1,
+  });
+  
   useQueryFilters(filters);
-
-  const [languages, setLanguages] = useState<Language[]>([]);
-  const [areas, setAreas] = useState<Area[]>([]);
-
-  useEffect(() => {
-    const fetchLanguages = async () => {
-      try {
-        const data = await languageService.getLanguages(locale);
-        setLanguages(data);
-      } catch (err) {
-        console.error("Failed to fetch languages:", err);
-      }
-    };
-
-    const fetchAreas = async () => {
-      try {
-        const data = await areaService.getCityAreas(locale, 1);
-        setAreas(data);
-      } catch (err) {
-        console.error("Failed to fetch languages:", err);
-      }
-    };
-
-    fetchLanguages();
-    fetchAreas();
-  }, [locale, setLanguages]);
 
   return (
     <Card className={cn("w-80 sticky top-[72px] self-start", className)}>
@@ -63,14 +45,18 @@ export const Filters: FC<Props> = ({ className }) => {
         <CheckboxGroup
           title={t("languages")}
           className="mt-5"
-          limit={5}
-          // isLoading
+          limit={3}
+          isLoading={isLanguagesLoading}
           // defaultItems={languages.map((item) => {
           //   return { text: item.name, value: item.id.toString() };
           // })}
-          items={languages.map((item) => {
-            return { text: item.name, value: item.id.toString() };
-          })}
+          items={
+            languages
+              ? languages.map((item) => {
+                  return { text: item.name, value: item.id.toString() };
+                })
+              : []
+          }
           onClickCheckbox={filters.setSelectedLanguages}
           selected={filters.selectedLanguages}
           name="languages"
@@ -79,20 +65,29 @@ export const Filters: FC<Props> = ({ className }) => {
           title={t("areas")}
           className="mt-5"
           limit={5}
-          // isLoading
+          isLoading={isAreasLoading}
           // defaultItems={areas.map((item) => {
           //   return { text: item.name, value: item.id.toString() };
           // })}
-          items={areas.map((item) => {
-            return { text: item.name, value: item.id.toString() };
-          })}
+          items={
+            areas
+              ? areas.map((item) => {
+                  return { text: item.name, value: item.id.toString() };
+                })
+              : []
+          }
           onClickCheckbox={filters.setSelectedAreas}
           selected={filters.selectedAreas}
           name="areas"
         />
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline">{t("clear")}</Button>
+        <Button
+          variant="outline"
+          disabled={isLanguagesLoading || isAreasLoading}
+        >
+          {t("clear")}
+        </Button>
       </CardFooter>
     </Card>
   );

@@ -1,1 +1,1 @@
-export { kindergartenService } from "./_model/services/kindergartenService";
+export { useGetKindergartens } from "./_model/vm/use-get-kindergartens";

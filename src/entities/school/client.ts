@@ -1,1 +1,1 @@
-export { schoolService } from "./_model/services/schoolService";
+export { useGetSchools } from "./_model/vm/use-get-schools";

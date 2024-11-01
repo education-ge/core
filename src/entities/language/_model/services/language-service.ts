@@ -3,7 +3,7 @@ import { Language } from "../domain/language";
 import { LanguageApiRoutes } from "../constants";
 
 class LanguageService {
-  async getLanguages(locale: Locale): Promise<Language[]> {
+  async getLanguages({ locale }: { locale: Locale }): Promise<Language[]> {
     try {
       const response = await axiosInstance.get<Language[]>(
         `${locale}/${LanguageApiRoutes.GET_LANGUAGES}`,
