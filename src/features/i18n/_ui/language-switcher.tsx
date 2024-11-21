@@ -33,14 +33,12 @@ export const LanguageSwitcher = () => {
   };
 
   return (
-    <div className="relative">
-      <button onClick={() => setIsOpen(!isOpen)} className="flex items-center">
-        <Image
-          width={40}
-          height={40}
-          alt={`Language ${locale}`}
-          src={`/flags/${locale}.svg`}
-        />
+    <div className="relative z-50">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex p-2 rounded-md items-center text-white hover:bg-gray-800"
+      >
+        {locale.toUpperCase()}
       </button>
 
       {isOpen && (

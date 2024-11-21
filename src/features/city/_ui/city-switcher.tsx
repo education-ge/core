@@ -1,19 +1,25 @@
 "use client";
 
 import { Button } from "@/shared/ui";
-import { MapPin } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 export const CitySwitcher = () => {
   const t = useTranslations("Common");
 
   return (
     <Button
-      variant="secondary"
-      className="flex items-center gap-1 bg-blue-200 hover:bg-blue-200 cursor-default"
+      variant={"ghost"}
+      className="flex items-center gap-1 text-white hover:bg-gray-800 hover:text-white"
     >
-      <MapPin />
-      <span className="text-lg font-semibold">{t("city.tbilisi")}</span>
+      <Image
+        src={"/svg/location-pin.svg"}
+        alt="location-pin"
+        width={20}
+        height={20}
+      />
+      <span>City:</span>
+      <span className="text-md font-semibold">{t("city.tbilisi")}</span>
     </Button>
   );
 };

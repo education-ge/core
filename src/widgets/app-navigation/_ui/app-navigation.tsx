@@ -18,7 +18,7 @@ export const AppNavigation = () => {
   const isActive = (path: string) => pathname.startsWith(path);
 
   return (
-    <nav className="border-b">
+    <nav className="border-b sticky top-0 z-20 bg-white">
       <Container className="flex justify-center">
         {navItems.map((item) => (
           <Link href={item.href} key={item.href}>

@@ -1,11 +1,10 @@
 import { Link } from "@/shared/i18n/routing";
-import { GraduationCap } from "lucide-react";
 
 export const Logo = () => {
   return (
-    <Link className="flex items-center space-x-2" href="/">
-      <GraduationCap width={35} height={35} />
-      <span className="font-bold inline-block">GeoSchool</span>
+    <Link className="flex items-center text-white py-4" href="/">
+      <span className="font-bold text-red-500">Geo</span>
+      <span className="font-bold">Study</span>
     </Link>
   );
 };

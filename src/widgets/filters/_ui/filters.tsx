@@ -33,11 +33,11 @@ export const Filters: FC<Props> = ({ className }) => {
     locale,
     cityId: 1,
   });
-  
+
   useQueryFilters(filters);
 
   return (
-    <Card className={cn("w-80 sticky top-[72px] self-start", className)}>
+    <Card className={cn("w-80 sticky top-4 self-start", className)}>
       <CardHeader>
         <CardTitle>{t("title")}</CardTitle>
       </CardHeader>

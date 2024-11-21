@@ -6,7 +6,8 @@ class SchoolService {
   async getSchools(locale: Locale): Promise<Institution[]> {
     try {
       const response = await axiosInstance.get<Institution[]>(
-        `${locale}/${SchoolApiRoutes.GET_ALL}`,
+        // `${locale}/${SchoolApiRoutes.GET_ALL}`,
+        "institutions/schools",
       );
       return response.data;
     } catch (error) {

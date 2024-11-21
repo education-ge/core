@@ -1,5 +1,3 @@
-import { Language } from "@/entities/language/client";
-
 export interface Kindergarten {
   id: number;
 
@@ -12,7 +10,7 @@ export interface Kindergarten {
   phone: string;
   email: string;
   website: string;
-  languages: Language[];
+  languageCodes: Locale[];
 
   ageGroups: number[];
   openingHours: string[];

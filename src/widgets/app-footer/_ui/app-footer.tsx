@@ -3,10 +3,10 @@ import { FC } from "react";
 
 export const AppFooter: FC = () => {
   return (
-    <header className="w-full bg-blue-400 mt-4">
-      <Container className="flex items-center justify-between py-2">
+    <footer className="w-full bg-gray-900 mt-4">
+      <Container className="flex items-center justify-between py-2 text-white">
         Footer
       </Container>
-    </header>
+    </footer>
   );
 };

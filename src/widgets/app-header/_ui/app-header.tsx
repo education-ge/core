@@ -3,17 +3,20 @@ import { FC } from "react";
 import { Logo } from "./logo";
 import { Search } from "./search";
 import { Actions } from "./actions";
+import { Navigation } from "./navigation";
 
 interface Props {
   search?: boolean;
+  navigation?: boolean;
   className?: string;
 }
 
-export const AppHeader: FC<Props> = ({ search }) => {
+export const AppHeader: FC<Props> = ({ search, navigation }) => {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-blue-300">
-      <Container className="flex items-center justify-between py-2">
+    <header className="w-full border-b bg-gray-900">
+      <Container className="flex items-center justify-between">
         <Logo />
+        {navigation && <Navigation />}
         {search && <Search />}
         <Actions />
       </Container>

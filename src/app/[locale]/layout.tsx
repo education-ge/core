@@ -5,8 +5,6 @@ import { cn } from "@/shared/ui/utils";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { headers } from "next/headers";
-import { AppHeader } from "@/widgets/app-header";
-import { AppFooter } from "@/widgets/app-footer";
 import ReactQueryProvider from "./_providers/react-query-provider";
 
 const fontSans = FontSans({
@@ -37,16 +35,12 @@ export default async function RootLayout({
     <html lang={locale}>
       <body
         className={cn(
-          "min-h-screen flex flex-col bg-background font-sans antialiased",
+          "min-h-screen flex flex-col bg-background bg-gray-50 font-sans antialiased",
           fontSans.variable,
         )}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <ReactQueryProvider>
-            <AppHeader />
-            <main className="flex-grow">{children}</main>
-            <AppFooter />
-          </ReactQueryProvider>
+          <ReactQueryProvider>{children}</ReactQueryProvider>
         </NextIntlClientProvider>
       </body>
     </html>

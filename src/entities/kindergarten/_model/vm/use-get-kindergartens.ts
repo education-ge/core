@@ -4,6 +4,6 @@ import { kindergartenService } from "../services/kindergartenService";
 export const useGetKindergartens = ({ locale }: { locale: Locale }) => {
   return useQuery({
     queryKey: ["kindergartens", locale],
-    queryFn: () => kindergartenService.getKindergartens(locale),
+    queryFn: () => kindergartenService.getAll(locale),
   });
 };

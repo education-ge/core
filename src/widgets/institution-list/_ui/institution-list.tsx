@@ -17,7 +17,7 @@ export const InstitutionList: FC<Props> = ({
 }) => {
   if (isLoading) {
     return (
-      <div className={cn("flex flex-col items-center gap-2", classNames)}>
+      <div className={cn("flex flex-col items-center gap-4", classNames)}>
         {...Array(3)
           .fill(0)
           .map((_, index) => <Skeleton key={index} className="h-6 mb-2" />)}
@@ -26,7 +26,13 @@ export const InstitutionList: FC<Props> = ({
   }
 
   return (
-    <div className={cn("flex flex-col items-center gap-2", classNames)}>
+    <div className={cn("flex flex-col items-center gap-4", classNames)}>
+      {institutions?.map((item) => (
+        <InstitutionListItem
+          key={`${item.type}-${item.id}`}
+          institution={item}
+        />
+      ))}
       {institutions?.map((item) => (
         <InstitutionListItem
           key={`${item.type}-${item.id}`}

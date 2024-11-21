@@ -6,6 +6,7 @@ import { InstitutionLocaleFieldNames } from "../../types";
 export async function GET(req: NextRequest) {
   const query = req.nextUrl.searchParams.get("query") || "";
   const locale = req.nextUrl.pathname.split("/")[2] as Locale;
+  console.log(req);
 
   const fieldNames = {
     name: `name_${locale}` as InstitutionLocaleFieldNames,
