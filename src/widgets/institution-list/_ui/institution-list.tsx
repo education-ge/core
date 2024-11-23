@@ -33,12 +33,6 @@ export const InstitutionList: FC<Props> = ({
           institution={item}
         />
       ))}
-      {institutions?.map((item) => (
-        <InstitutionListItem
-          key={`${item.type}-${item.id}`}
-          institution={item}
-        />
-      ))}
     </div>
   );
 };

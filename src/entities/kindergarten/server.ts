@@ -1,1 +1,3 @@
-export { kindergartenService } from "./_model/services/kindergartenService";
+export { kindergartenListApi } from './_model/api/kindergarten-list-api'
+
+

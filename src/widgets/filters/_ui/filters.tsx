@@ -14,8 +14,9 @@ import { FC } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useFilters } from "../_model/use-filters";
 import { useQueryFilters } from "../_model/use-filters-query";
-import { useGetLanguages } from "@/features/i18n/client";
-import { useGetAreasByCityId } from "@/features/city/server";
+import { useGetLanguageList } from "@/entities/language/client";
+import { useGetAreaList } from "@/entities/city/client";
+import { CityId } from "@/shared/types/city";
 
 interface Props {
   className?: string;
@@ -26,13 +27,11 @@ export const Filters: FC<Props> = ({ className }) => {
   const locale = useLocale();
   const filters = useFilters();
 
-  const { data: languages, isLoading: isLanguagesLoading } = useGetLanguages({
-    locale,
-  });
-  const { data: areas, isLoading: isAreasLoading } = useGetAreasByCityId({
-    locale,
-    cityId: 1,
-  });
+  const { data: languages, isLoading: isLanguagesLoading } =
+    useGetLanguageList(locale);
+  const { data: areas, isLoading: isAreasLoading } = useGetAreaList(
+    1 as CityId,
+  );
 
   useQueryFilters(filters);
 

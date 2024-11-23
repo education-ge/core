@@ -1,15 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { kindergartenService } from "../services/kindergartenService";
+import { useLocale } from "next-intl";
+import { getKindergarten } from "../services/get-kindergarten";
+import { KindergartenId } from "@/shared/types/kindergarten";
 
-export const useGetKindergarten = ({
-  locale,
-  id,
-}: {
-  locale: Locale;
-  id: string | number;
-}) => {
+export const useGetKindergarten = (id: KindergartenId) => {
+  const locale = useLocale();
+
   return useQuery({
     queryKey: ["kindergartens", locale, id],
-    queryFn: () => kindergartenService.getById(locale, id),
+    queryFn: () => getKindergarten(locale, id),
   });
 };

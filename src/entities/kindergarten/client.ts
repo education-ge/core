@@ -1,2 +1,2 @@
 export { useGetKindergarten } from "./_model/vm/use-get-kindergarten";
-export { useGetKindergartens } from "./_model/vm/use-get-kindergartens";
+export { useGetKindergartenList } from "./_model/vm/use-get-kindergarten-list";

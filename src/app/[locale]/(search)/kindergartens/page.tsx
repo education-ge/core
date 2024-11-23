@@ -1,16 +1,15 @@
 "use client";
 
-import { useGetKindergartens } from "@/entities/kindergarten/client";
+import { useGetKindergartenList } from "@/entities/kindergarten/client";
 import { Container } from "@/shared/ui";
 import { Filters } from "@/widgets/filters";
 import { InstitutionList } from "@/widgets/institution-list";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 
 export default function KindergartensPage() {
   const t = useTranslations("KindergartensPage");
-  const locale = useLocale();
 
-  const { data: kindergartens, isLoading } = useGetKindergartens({ locale });
+  const { data: kindergartens, isLoading } = useGetKindergartenList();
 
   return (
     <Container className="mt-4 flex">

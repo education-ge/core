@@ -51,7 +51,7 @@ export const CheckboxGroup: FC<Props> = ({
         <p className="font-bold mb-3">{title}</p>
         {...Array(limit)
           .fill(0)
-          .map((_, index) => <Skeleton key={index} className="h-6 mb-2" />)}
+          .map((_, index) => <Skeleton key={index} className="h-5 mb-2" />)}
       </div>
     );
   }
