@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Button,
   Card,
@@ -12,28 +10,29 @@ import { cn } from "@/shared/ui/utils";
 import { CheckboxGroup } from "./checkbox-group";
 import { FC } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { useFilters } from "../_model/use-filters";
-import { useQueryFilters } from "../_model/use-filters-query";
+// import { useFilters } from "../_model/use-filters";
+// import { useQueryFilters } from "../_model/use-filters-query";
 import { useGetLanguageList } from "@/entities/language/client";
 import { useGetAreaList } from "@/entities/city/client";
 import { CityId } from "@/shared/types/city";
+import { getTranslations } from "next-intl/server";
 
 interface Props {
   className?: string;
 }
 
-export const Filters: FC<Props> = ({ className }) => {
-  const t = useTranslations("Filters");
-  const locale = useLocale();
-  const filters = useFilters();
+export const Filters: FC<Props> = async ({ className }) => {
+  // const locale = useLocale();
+  const t = await getTranslations("Filters");
+  // const filters = useFilters();
 
-  const { data: languages, isLoading: isLanguagesLoading } =
-    useGetLanguageList(locale);
-  const { data: areas, isLoading: isAreasLoading } = useGetAreaList(
-    1 as CityId,
-  );
+  // const { data: languages, isLoading: isLanguagesLoading } =
+  //   useGetLanguageList(locale);
+  // const { data: areas, isLoading: isAreasLoading } = useGetAreaList(
+  //   1 as CityId,
+  // );
 
-  useQueryFilters(filters);
+  // useQueryFilters(filters);
 
   return (
     <Card className={cn("w-80 sticky top-4 self-start", className)}>
@@ -41,7 +40,7 @@ export const Filters: FC<Props> = ({ className }) => {
         <CardTitle>{t("title")}</CardTitle>
       </CardHeader>
       <CardContent>
-        <CheckboxGroup
+        {/* <CheckboxGroup
           title={t("languages")}
           className="mt-5"
           limit={3}
@@ -78,12 +77,12 @@ export const Filters: FC<Props> = ({ className }) => {
           onClickCheckbox={filters.setSelectedAreas}
           selected={filters.selectedAreas}
           name="areas"
-        />
+        /> */}
       </CardContent>
       <CardFooter className="flex justify-between">
         <Button
           variant="outline"
-          disabled={isLanguagesLoading || isAreasLoading}
+          // disabled={isLanguagesLoading || isAreasLoading}
         >
           {t("clear")}
         </Button>

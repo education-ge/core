@@ -1,7 +1,7 @@
 import { AppFooter } from "@/widgets/app-footer";
 import { AppHeader } from "@/widgets/app-header";
 
-export default async function Layout({
+export default function Layout({
   children,
 }: {
   children: React.ReactNode;

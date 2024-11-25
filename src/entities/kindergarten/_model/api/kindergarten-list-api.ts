@@ -1,18 +1,21 @@
-import { axiosInstance } from "@/shared/api/axios";
 import { KindergartenList } from "../types/kindergarten";
 import { Locale } from "@/shared/types/language";
 
 export const kindergartenListApi = async (
   locale: Locale,
-  filters: Record<string, string>,
 ): Promise<KindergartenList> => {
-  console.log(filters);
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   try {
-    const response = await axiosInstance.get<KindergartenList>(
-      `/${locale}/institutions/kindergartens`,
-      // { params: filters },
+    const response = await fetch(
+      `${baseUrl}/${locale}/institutions/kindergartens`,
+      {
+        cache: "force-cache",
+        next: {
+          revalidate: 3600,
+        },
+      },
     );
-    return response.data;
+    return response.json();
   } catch (error) {
     throw new Error(`Failed to fetch kindergarten list: ${error}`);
   }

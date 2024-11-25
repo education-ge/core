@@ -1,15 +1,15 @@
+import { schoolListSchema } from "@/entities/school/server";
 import { NextRequest, NextResponse } from "next/server";
-import { kindergartenListSchema } from "@/entities/kindergarten/_model/types/schema";
 
 export async function GET(req: NextRequest) {
   try {
     const locale = req.nextUrl.pathname.split("/")[2];
 
-    const res = await fetch(`/${locale}/institutions/kindergartens`);
+    const res = await fetch(`/${locale}/institutions/schools`);
 
     const data = res.json();
 
-    const result = kindergartenListSchema.safeParse(data);
+    const result = schoolListSchema.safeParse(data);
 
     if (!result.success) {
       console.error("Validation errors:", result.error.errors);

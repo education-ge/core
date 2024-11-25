@@ -1,48 +1,26 @@
 import { getKindergartenList } from "@/entities/kindergarten/server";
 import { KindergartenListCard } from "@/features/kindergarten/server";
+import { Locale } from "@/shared/types/language";
 import { Container } from "@/shared/ui";
 import { Filters } from "@/widgets/filters";
 import { InstitutionList } from "@/widgets/institution-list";
-import { useTranslations } from "next-intl";
-import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 
-export default async function KindergartensPage(
-  props: {
-    searchParams: Promise<Record<string, string>>;
-  }
-) {
-  const searchParams = await props.searchParams;
-  const t = useTranslations("KindergartensPage");
+export async function generateStaticParams() {
+  return [{ locale: "en" }, { locale: "ge" }, { locale: "ru" }];
+}
 
-  let kindergartens;
+export const revalidate = 60;
 
-  try {
-    console.log("Fetching kindergartens...");
-    kindergartens = await getKindergartenList("en", searchParams);
-    if (!kindergartens || kindergartens.length === 0) {
-      return (
-        <Container className="mt-4 flex">
-          <p>Данные о детских садах отсутствуют.</p>
-        </Container>
-      );
-    }
-    console.log("Fetched kindergartens:", kindergartens);
-  } catch (error) {
-    console.error("Error loading kindergartens:", error);
-    return (
-      <Container className="mt-4 flex">
-        <p>Не удалось загрузить данные. Попробуйте позже.</p>
-      </Container>
-    );
-  }
+export default async function KindergartensPage({
+  params,
+}: {
+  params: { locale: Locale };
+}) {
+  const t = await getTranslations("KindergartensPage");
+  const locale = params.locale;
 
-  if (!kindergartens || kindergartens.length === 0) {
-    return (
-      <Container className="mt-4 flex">
-        <p>Данные о детских садах отсутствуют.</p>
-      </Container>
-    );
-  }
+  const schools = await getKindergartenList(locale);
 
   return (
     <Container className="mt-4 flex">
@@ -50,7 +28,7 @@ export default async function KindergartensPage(
       <div className="flex-1 ml-4">
         <h1 className="font-semibold text-2xl mb-2">{t("title")}</h1>
         <InstitutionList>
-          {kindergartens.map((item) => (
+          {schools.map((item) => (
             <KindergartenListCard key={item.id} kindergarten={item} />
           ))}
         </InstitutionList>

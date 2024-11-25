@@ -6,10 +6,9 @@ import { kindergartenListSchema } from "../types/schema";
 
 export const getKindergartenList = async (
   locale: Locale,
-  filters: Record<string, string>,
 ): Promise<KindergartenList> => {
   try {
-    const data = await kindergartenListApi(locale, filters);
+    const data = await kindergartenListApi(locale);
 
     const validatedData = kindergartenListSchema.parse(data);
 

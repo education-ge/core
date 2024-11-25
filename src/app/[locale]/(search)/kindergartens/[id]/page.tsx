@@ -1,4 +1,4 @@
-"use client";;
+"use client";
 import { use } from "react";
 
 import { useGetKindergarten } from "@/entities/kindergarten/client";
@@ -14,16 +14,12 @@ import {
 } from "@/shared/ui";
 import Image from "next/image";
 
-export default function KindergartenPage(
-  props: {
-    params: Promise<{ id: string }>;
-  }
-) {
+export default function KindergartenPage(props: {
+  params: Promise<{ id: string }>;
+}) {
   const params = use(props.params);
 
-  const {
-    id
-  } = params;
+  const { id } = params;
 
   const locale = useLocale();
   const { data, isLoading } = useGetKindergarten({ locale, id });
@@ -54,7 +50,7 @@ export default function KindergartenPage(
             )}
           </div>
           <CardTitle>{data?.name}</CardTitle>
-          <CardDescription>{data?.shortDescription}</CardDescription>
+          {/* <CardDescription>{data?.shortDescription}</CardDescription> */}
         </CardHeader>
         <CardContent>
           <p>

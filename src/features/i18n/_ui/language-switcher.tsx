@@ -4,7 +4,6 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLocale } from "next-intl";
 import { useRef, useState } from "react";
 import Image from "next/image";
-import { useClickAway } from "react-use";
 
 export const LanguageSwitcher = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,10 +12,6 @@ export const LanguageSwitcher = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const ref = useRef(null);
-
-  useClickAway(ref, () => {
-    setIsOpen(false);
-  });
 
   const availableLocales = [
     { code: "en", name: "English" },

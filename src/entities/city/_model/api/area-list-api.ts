@@ -1,4 +1,3 @@
-import { axiosInstance } from "@/shared/api/axios";
 import { Locale } from "@/shared/types/language";
 import { AreaList } from "../types/city";
 import { CityId } from "@/shared/types/city";
@@ -8,10 +7,8 @@ export const areaListApi = async (
   id: CityId,
 ): Promise<AreaList> => {
   try {
-    const response = await axiosInstance.get<AreaList>(
-      `/${locale}/cities/${id}/areas`,
-    );
-    return response.data;
+    const response = await fetch(`/${locale}/cities/${id}/areas`);
+    return response.json();
   } catch (error) {
     console.error("Api error:", error);
     throw error;

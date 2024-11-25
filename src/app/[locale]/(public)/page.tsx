@@ -1,4 +1,3 @@
-import { SearchInput } from "@/features/search/client";
 import { Link } from "@/shared/i18n/routing";
 import { Button, Container } from "@/shared/ui";
 import { useTranslations } from "next-intl";
@@ -12,7 +11,7 @@ export default function HomePage() {
     <Container className="mt-4 flex flex-col items-center">
       <h1 className="font-semibold text-2xl mb-8 text-center">{t("title")}</h1>
       <div className="justify-center">
-        <SearchInput className="w-[600px] border-black border-2 rounded-lg" />
+        {/* <SearchInput className="w-[600px] border-black border-2 rounded-lg" /> */}
       </div>
       <div className="flex gap-8 justify-center mt-24">
         <Link href="/kindergartens">
