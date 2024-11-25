@@ -6,11 +6,12 @@ import { InstitutionList } from "@/widgets/institution-list";
 import { useTranslations } from "next-intl";
 import { notFound } from "next/navigation";
 
-export default async function KindergartensPage({
-  searchParams,
-}: {
-  searchParams: Record<string, string>;
-}) {
+export default async function KindergartensPage(
+  props: {
+    searchParams: Promise<Record<string, string>>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const t = useTranslations("KindergartensPage");
 
   let kindergartens;

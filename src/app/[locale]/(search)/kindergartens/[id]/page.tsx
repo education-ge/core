@@ -1,4 +1,5 @@
-"use client";
+"use client";;
+import { use } from "react";
 
 import { useGetKindergarten } from "@/entities/kindergarten/client";
 import { Container } from "@/shared/ui";
@@ -13,11 +14,17 @@ import {
 } from "@/shared/ui";
 import Image from "next/image";
 
-export default function KindergartenPage({
-  params: { id },
-}: {
-  params: { id: string };
-}) {
+export default function KindergartenPage(
+  props: {
+    params: Promise<{ id: string }>;
+  }
+) {
+  const params = use(props.params);
+
+  const {
+    id
+  } = params;
+
   const locale = useLocale();
   const { data, isLoading } = useGetKindergarten({ locale, id });
 

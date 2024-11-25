@@ -7,12 +7,10 @@ export default async function Layout({
   children: React.ReactNode;
 }) {
   return (
-    <>
-      <div className="flex flex-col h-screen">
-        <AppHeader navigation />
-        <main className="flex-grow">{children}</main>
-        <AppFooter />
-      </div>
-    </>
+    <div className="flex flex-col h-screen">
+      <AppHeader navigation />
+      <main className="flex-grow">{children}</main>
+      <AppFooter />
+    </div>
   );
 }

@@ -16,13 +16,16 @@ export const metadata: Metadata = {
   description: "About education in Georgia",
 };
 
-export default async function RootLayout({
-  children,
-  params,
-}: Readonly<{
-  children: React.ReactNode;
-  params: { locale?: string };
-}>) {
+export default async function RootLayout(
+  props: Readonly<{
+    children: React.ReactNode;
+    params: { locale?: string };
+  }>,
+) {
+  const params = await props.params;
+
+  const { children } = props;
+
   const headersList = await headers();
   const acceptLanguage = headersList.get("accept-language");
 
