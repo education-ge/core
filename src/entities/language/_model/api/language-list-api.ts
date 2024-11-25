@@ -4,7 +4,7 @@ import { Language, Locale } from "@/shared/types/language";
 export const languageListApi = async (locale: Locale): Promise<Language[]> => {
   try {
     const response = await axiosInstance.get<Language[]>(
-      `/${locale}/institutions/languages`,
+      `/${locale}/languages`,
     );
     return response.data;
   } catch (error) {

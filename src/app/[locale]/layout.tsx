@@ -5,7 +5,6 @@ import { cn } from "@/shared/ui/utils";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { headers } from "next/headers";
-import ReactQueryProvider from "./_providers/react-query-provider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -13,7 +12,7 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: "GeoSchool",
+  title: "GeoStudy",
   description: "About education in Georgia",
 };
 
@@ -24,11 +23,12 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale?: string };
 }>) {
-  const headersList = headers();
+  const headersList = await headers();
   const acceptLanguage = headersList.get("accept-language");
 
   const locale =
     params?.locale || acceptLanguage?.split(",")[0].split("-")[0] || "en";
+
   const messages = await getMessages({ locale });
 
   return (
@@ -40,7 +40,7 @@ export default async function RootLayout({
         )}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <ReactQueryProvider>{children}</ReactQueryProvider>
+          {children}
         </NextIntlClientProvider>
       </body>
     </html>

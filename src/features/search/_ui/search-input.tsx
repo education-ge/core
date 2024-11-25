@@ -28,10 +28,11 @@ export const SearchInput: FC<Props> = ({ className }) => {
     [searchText],
   );
 
-  const { data: items = [] } = useGetInstitutionsByText({
-    locale,
-    searchText: debouncedSearchText,
-  });
+  // const { data: items = [] } = useGetInstitutionsByText({
+  //   locale,
+  //   searchText: debouncedSearchText,
+  // });
+  const items = [];
 
   useClickAway(ref, () => {
     setIsFocused(false);

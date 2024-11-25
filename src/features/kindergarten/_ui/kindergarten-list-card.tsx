@@ -1,3 +1,5 @@
+import { KindergartenListItem } from "@/entities/kindergarten/server";
+import { Link } from "@/shared/i18n/routing";
 import {
   Button,
   Card,
@@ -10,26 +12,28 @@ import {
 import { cn } from "@/shared/ui/utils";
 import Image from "next/image";
 import { FC } from "react";
-import Link from "next/link";
-import { Institution } from "@/entities/institution/client";
 
 interface Props {
-  institution: Institution;
+  kindergarten: KindergartenListItem;
   className?: string;
 }
 
-export const InstitutionListItem: FC<Props> = ({ institution, className }) => {
+export const KindergartenListCard: FC<Props> = ({
+  kindergarten,
+  className,
+}) => {
   return (
     <Link
-      href={`${institution.type}s/${institution.id}`}
+      href={`kindergartens/${kindergarten.id}`}
       className={cn("flex flex-col gap-2 w-full", className)}
+      target="_blank"
     >
       <Card className="flex flex-grow h-48 rounded-xl group transition-shadow duration-400 hover:shadow-lg">
         <div className="w-[200px] h-full relative flex justify-center items-center bg-slate-200 rounded-l-xl overflow-hidden">
-          {institution.thumbnail ? (
+          {kindergarten.thumbnail ? (
             <>
               <Image
-                src={`/${institution.thumbnail}` || ""}
+                src={`/${kindergarten.thumbnail}` || ""}
                 alt="school logo"
                 fill={true}
                 className="object-cover transition-transform duration-300"
@@ -48,17 +52,17 @@ export const InstitutionListItem: FC<Props> = ({ institution, className }) => {
         <div className="flex flex-grow flex-col justify-between rounded-r-xl">
           <CardHeader className="p-4">
             <CardTitle className="flex justify-between gap-2">
-              {institution.name}
+              {kindergarten.name}
             </CardTitle>
-            <CardDescription>{institution.address}</CardDescription>
+            <CardDescription>{kindergarten.address}</CardDescription>
           </CardHeader>
 
           <CardContent className="flex px-4 pb-4 justify-between">
             <div className="flex gap-1">
-              {institution.languageCodes?.map((item) => (
+              {kindergarten.languages?.map((item) => (
                 <Image
-                  key={item}
-                  src={`/flags/${item}.svg`}
+                  key={item.id}
+                  src={`/flags/${item.code}.svg`}
                   alt="flag"
                   width={30}
                   height={30}
