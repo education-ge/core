@@ -27,3 +27,9 @@ export const citySchema = z.object({
   name: z.string(),
 });
 export type City = z.infer<typeof citySchema>;
+
+export const areaListSchema = z.array(areaSchema);
+export type AreaList = z.infer<typeof areaListSchema>;
+
+export const cityListSchema = z.array(citySchema);
+export type CityList = z.infer<typeof cityListSchema>;

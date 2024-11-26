@@ -1,23 +1,18 @@
-import { z } from "zod";
-import { Language, languageSchema, Locale } from "@/shared/types/language";
-import { languageListApi } from "../api/language-list-api";
+import { LanguageList, Locale } from "@/shared/types/language";
 
-const languageListSchema = z.array(languageSchema);
-
-export const getLanguageList = async (locale: Locale): Promise<Language[]> => {
+export const getLanguageList = async (
+  locale: Locale,
+): Promise<LanguageList> => {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   try {
-    const data = await languageListApi(locale);
-
-    const validatedData = languageListSchema.parse(data);
-
-    return validatedData;
+    const response = await fetch(`${baseUrl}/${locale}/languages`, {
+      cache: "force-cache",
+      next: {
+        revalidate: 3600,
+      },
+    });
+    return response.json();
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      console.error("Zod error:", error.errors);
-    } else {
-      console.error("Error in service:", error);
-    }
-
-    throw error;
+    throw new Error(`Failed to fetch kindergarten list: ${error}`);
   }
 };

@@ -14,3 +14,6 @@ export const languageSchema = z.object({
   name: z.string(),
 });
 export type Language = z.infer<typeof languageSchema>;
+
+export const languageListSchema = z.array(languageSchema);
+export type LanguageList = z.infer<typeof languageListSchema>;

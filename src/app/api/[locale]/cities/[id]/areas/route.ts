@@ -4,8 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest) {
   try {
     const locale = req.nextUrl.pathname.split("/")[2];
+    const cityId = req.nextUrl.pathname.split("/")[4];
 
-    const res = await fetch(`/${locale}/cities`);
+    const res = await fetch(`/${locale}/cities/${cityId}/areas`);
 
     const data = res.json();
 

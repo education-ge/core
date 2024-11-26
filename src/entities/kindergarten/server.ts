@@ -1,5 +1,5 @@
+export { kindergartenListSchema } from "./_model/types/schema";
 export { getKindergartenList } from "./_model/services/get-kindergarten-list";
-export { kindergartenListApi } from "./_model/api/kindergarten-list-api";
 export type {
   Kindergarten,
   KindergartenList,

@@ -1,27 +1,20 @@
-import { z } from "zod";
+import { AreaList, CityId } from "@/shared/types/city";
 import { Locale } from "@/shared/types/language";
-import { AreaList } from "../types/city";
-import { areaListApi } from "../api/area-list-api";
-import { areaListSchema } from "../types/schema";
-import { CityId } from "@/shared/types/city";
 
 export const getAreaList = async (
   locale: Locale,
   id: CityId,
 ): Promise<AreaList> => {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   try {
-    const data = await areaListApi(locale, id);
-
-    const validatedData = areaListSchema.parse(data);
-
-    return validatedData;
+    const response = await fetch(`${baseUrl}/${locale}/cities/${id}/areas`, {
+      cache: "force-cache",
+      next: {
+        revalidate: 3600,
+      },
+    });
+    return response.json();
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      console.error("Zod error:", error.errors);
-    } else {
-      console.error("Error in service:", error);
-    }
-
-    throw error;
+    throw new Error(`Failed to fetch kindergarten list: ${error}`);
   }
 };

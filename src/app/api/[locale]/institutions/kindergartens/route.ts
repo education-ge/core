@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { kindergartenListSchema } from "@/entities/kindergarten/_model/types/schema";
+import { kindergartenListSchema } from "@/entities/kindergarten/server";
 
 export async function GET(req: NextRequest) {
   try {

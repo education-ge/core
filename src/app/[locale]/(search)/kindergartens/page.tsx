@@ -6,7 +6,7 @@ import { Filters } from "@/widgets/filters";
 import { InstitutionList } from "@/widgets/institution-list";
 import { getTranslations } from "next-intl/server";
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<{ locale: Locale }[]> {
   return [{ locale: "en" }, { locale: "ge" }, { locale: "ru" }];
 }
 

@@ -1,23 +1,17 @@
-import { z } from "zod";
+import { CityList } from "@/shared/types/city";
 import { Locale } from "@/shared/types/language";
-import { CityList } from "../types/city";
-import { cityListApi } from "../api/city-list-api";
-import { cityListSchema } from "../types/schema";
 
 export const getCityList = async (locale: Locale): Promise<CityList> => {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL;
   try {
-    const data = await cityListApi(locale);
-
-    const validatedData = cityListSchema.parse(data);
-
-    return validatedData;
+    const response = await fetch(`${baseUrl}/${locale}/cities`, {
+      cache: "force-cache",
+      next: {
+        revalidate: 3600,
+      },
+    });
+    return response.json();
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      console.error("Zod error:", error.errors);
-    } else {
-      console.error("Error in service:", error);
-    }
-
-    throw error;
+    throw new Error(`Failed to fetch kindergarten list: ${error}`);
   }
 };

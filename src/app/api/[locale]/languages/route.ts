@@ -1,23 +1,27 @@
-import { db } from "@/shared/lib/db";
+import { languageListSchema } from "@/shared/types/language";
 import { NextRequest, NextResponse } from "next/server";
-import { Language } from "@/entities/language/client";
-
-type LanguageNameField = `name_${Locale}`;
 
 export async function GET(req: NextRequest) {
-  const locale = req.nextUrl.pathname.split("/")[2] as Locale;
+  try {
+    const locale = req.nextUrl.pathname.split("/")[2];
 
-  const fieldNames = {
-    name: `name_${locale}` as LanguageNameField,
-  };
+    const res = await fetch(`/${locale}/languages`);
 
-  const languages: Language[] = await db.language.findMany().then((result) =>
-    result.map((language) => ({
-      id: language.id,
-      name: language[fieldNames.name],
-      code: language.code,
-    })),
-  );
+    const data = res.json();
 
-  return NextResponse.json(languages);
+    const result = languageListSchema.safeParse(data);
+
+    if (!result.success) {
+      console.error("Validation errors:", result.error.errors);
+      return NextResponse.json(
+        { message: "Invalid data received", errors: result.error.errors },
+        { status: 400 },
+      );
+    }
+
+    return NextResponse.json(result.data);
+  } catch (error) {
+    console.error("Error in API route:", error);
+    return NextResponse.error();
+  }
 }

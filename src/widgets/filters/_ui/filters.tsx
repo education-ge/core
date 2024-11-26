@@ -7,14 +7,7 @@ import {
   CardTitle,
 } from "@/shared/ui";
 import { cn } from "@/shared/ui/utils";
-import { CheckboxGroup } from "./checkbox-group";
 import { FC } from "react";
-import { useLocale, useTranslations } from "next-intl";
-// import { useFilters } from "../_model/use-filters";
-// import { useQueryFilters } from "../_model/use-filters-query";
-import { useGetLanguageList } from "@/entities/language/client";
-import { useGetAreaList } from "@/entities/city/client";
-import { CityId } from "@/shared/types/city";
 import { getTranslations } from "next-intl/server";
 
 interface Props {
@@ -24,15 +17,6 @@ interface Props {
 export const Filters: FC<Props> = async ({ className }) => {
   // const locale = useLocale();
   const t = await getTranslations("Filters");
-  // const filters = useFilters();
-
-  // const { data: languages, isLoading: isLanguagesLoading } =
-  //   useGetLanguageList(locale);
-  // const { data: areas, isLoading: isAreasLoading } = useGetAreaList(
-  //   1 as CityId,
-  // );
-
-  // useQueryFilters(filters);
 
   return (
     <Card className={cn("w-80 sticky top-4 self-start", className)}>
