@@ -1,4 +1,4 @@
-import { SearchInput } from "@/features/search/client";
+// import { SearchInput } from "@/features/search/client";
 
 export const Search = () => {
   return (

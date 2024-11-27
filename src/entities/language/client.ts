@@ -1,1 +1,1 @@
-export { useGetLanguageList } from "./_model/vm/use-get-language-list";
+export { useGetLanguageList } from "./_model/hooks/use-get-language-list";

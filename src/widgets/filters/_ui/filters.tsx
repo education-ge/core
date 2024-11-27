@@ -7,15 +7,12 @@ import {
   CardTitle,
 } from "@/shared/ui";
 import { cn } from "@/shared/ui/utils";
-import { FC } from "react";
 import { getTranslations } from "next-intl/server";
+import { LanguageFilter } from "@/features/filters/_ui/language-filter";
+import { AreaFilter } from "@/features/filters/_ui/area-filter";
+import { CityId } from "@/shared/types/city";
 
-interface Props {
-  className?: string;
-}
-
-export const Filters: FC<Props> = async ({ className }) => {
-  // const locale = useLocale();
+export async function Filters({ className }: { className?: string }) {
   const t = await getTranslations("Filters");
 
   return (
@@ -24,6 +21,8 @@ export const Filters: FC<Props> = async ({ className }) => {
         <CardTitle>{t("title")}</CardTitle>
       </CardHeader>
       <CardContent>
+        <LanguageFilter />
+        <AreaFilter ciyId={1 as CityId} classNames="mt-5" />
         {/* <CheckboxGroup
           title={t("languages")}
           className="mt-5"
@@ -73,4 +72,4 @@ export const Filters: FC<Props> = async ({ className }) => {
       </CardFooter>
     </Card>
   );
-};
+}

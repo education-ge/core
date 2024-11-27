@@ -1,4 +1,4 @@
-import { Filters, FiltersParamNames } from "./types/filters";
+// import { Filters, FiltersParamNames } from "./types/filters";
 
 // export const getFiltersFromQuery = (): Filters => {
 //   const searchParams = new URLSearchParams(window.location.search);

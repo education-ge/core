@@ -5,6 +5,7 @@ import { cn } from "@/shared/ui/utils";
 import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { headers } from "next/headers";
+import ReactQueryProvider from "./_providers/react-query-provider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -42,9 +43,11 @@ export default async function RootLayout(
           fontSans.variable,
         )}
       >
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <ReactQueryProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

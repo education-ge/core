@@ -3,8 +3,8 @@
 import { FC, useRef, useState } from "react";
 import { cn } from "@/shared/ui/utils";
 import Image from "next/image";
-import { Link } from "@/shared/i18n/routing";
-import { useLocale, useTranslations } from "next-intl";
+// import { Link } from "@/shared/i18n/routing";
+import { useTranslations } from "next-intl";
 
 interface Props {
   className?: string;
@@ -14,14 +14,14 @@ export const SearchInput: FC<Props> = ({ className }) => {
   const t = useTranslations("SearchInput");
   const [searchText, setSearchText] = useState("");
   const [isFocused, setIsFocused] = useState(false);
-  const locale = useLocale();
+  // const locale = useLocale();
   const ref = useRef(null);
 
   // const { data: items = [] } = useGetInstitutionsByText({
   //   locale,
   //   searchText: debouncedSearchText,
   // });
-  const items = [];
+  // const items = [];
 
   // const onClickItem = () => {
   //   setIsFocused(false);
@@ -56,7 +56,7 @@ export const SearchInput: FC<Props> = ({ className }) => {
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
-        {items.length > 0 && (
+        {/* {items.length > 0 && (
           <div
             className={cn(
               "absolute w-full bg-white rounded-lg py-2 top-14 shadow-md transition-all duration-200 invisible opacity-0 z-30",
@@ -92,7 +92,7 @@ export const SearchInput: FC<Props> = ({ className }) => {
               </Link>
             ))}
           </div>
-        )}
+        )} */}
       </div>
     </>
   );

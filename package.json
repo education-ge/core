@@ -19,6 +19,7 @@
     "@types/qs": "^6.9.16",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "lucide-react": "^0.461.0",
     "next": "^15.0.3",
     "next-intl": "^3.25.1",
     "qs": "^6.13.0",

@@ -4,21 +4,16 @@ import { Locale } from "@/shared/types/language";
 import { Container } from "@/shared/ui";
 import { Filters } from "@/widgets/filters";
 import { InstitutionList } from "@/widgets/institution-list";
-import { getTranslations } from "next-intl/server";
-
-export async function generateStaticParams(): Promise<{ locale: Locale }[]> {
-  return [{ locale: "en" }, { locale: "ge" }, { locale: "ru" }];
-}
-
-export const revalidate = 60;
 
 export default async function KindergartensPage({
   params,
 }: {
-  params: { locale: Locale };
+  params: Promise<{
+    locale: Locale;
+  }>;
 }) {
-  const t = await getTranslations("KindergartensPage");
-  const locale = params.locale;
+  const resolvedParams = await params;
+  const locale = resolvedParams.locale;
 
   const schools = await getKindergartenList(locale);
 
@@ -26,7 +21,6 @@ export default async function KindergartensPage({
     <Container className="mt-4 flex">
       <Filters />
       <div className="flex-1 ml-4">
-        <h1 className="font-semibold text-2xl mb-2">{t("title")}</h1>
         <InstitutionList>
           {schools.map((item) => (
             <KindergartenListCard key={item.id} kindergarten={item} />
