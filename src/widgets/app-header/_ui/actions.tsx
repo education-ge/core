@@ -6,13 +6,6 @@ export const Actions = () => {
     <div className="flex items-center gap-2">
       <CitySwitcher />
       <LanguageSwitcher />
-      {/* <Button>
-        <Heart />
-      </Button>
-      <Button variant="outline" className="flex items-center gap-1">
-        <User />
-        <span>Profile</span>
-      </Button> */}
     </div>
   );
 };
