@@ -6,7 +6,7 @@ export const getAreaList = async (
   id: CityId,
 ): Promise<AreaList> => {
   const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-  console.log("Locale:", locale, "City ID:", id);
+  console.log("Base URL:", baseUrl);
   try {
     const response = await fetch(`${baseUrl}/${locale}/cities/${id}/areas`, {
       cache: "force-cache",
