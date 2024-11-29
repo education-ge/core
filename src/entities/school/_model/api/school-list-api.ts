@@ -7,6 +7,7 @@ export const schoolListApi = async (locale: Locale): Promise<SchoolList> => {
     const response = await fetch(`${baseUrl}/${locale}/institutions/schools`);
     return response.json();
   } catch (error) {
-    throw new Error(`Failed to fetch school list: ${error}`);
+    console.error(`Failed to fetch school list: ${error}`);
+    return [];
   }
 };

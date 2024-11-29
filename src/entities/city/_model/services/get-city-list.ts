@@ -12,6 +12,7 @@ export const getCityList = async (locale: Locale): Promise<CityList> => {
     });
     return response.json();
   } catch (error) {
-    throw new Error(`Failed to fetch kindergarten list: ${error}`);
+    console.error(`Failed to fetch kindergarten list: ${error}`);
+    return [];
   }
 };
