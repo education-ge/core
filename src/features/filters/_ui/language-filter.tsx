@@ -6,10 +6,16 @@ import { FC } from "react";
 import { useGetLanguageList } from "@/entities/language/client";
 
 interface Props {
+  selectedLanguages: Set<string>;
+  updateLanguages: (value: string) => void;
   classNames?: string;
 }
 
-export const LanguageFilter: FC<Props> = ({ classNames }) => {
+export const LanguageFilter: FC<Props> = ({
+  selectedLanguages,
+  updateLanguages,
+  classNames,
+}) => {
   const t = useTranslations("Filters");
 
   const { data: languages, isLoading } = useGetLanguageList();
@@ -20,18 +26,16 @@ export const LanguageFilter: FC<Props> = ({ classNames }) => {
       className={classNames}
       limit={3}
       isLoading={isLoading}
-      // defaultItems={languages.map((item) => {
-      //   return { text: item.name, value: item.id.toString() };
-      // })}
       items={
         languages
-          ? languages.map((item) => {
-              return { text: item.name, value: item.id.toString() };
-            })
+          ? languages.map((item) => ({
+              text: item.name,
+              value: item.id.toString(),
+            }))
           : []
       }
-      onClickCheckbox={() => console.log(123)}
-      // selected={filters.selectedLanguages}
+      onClickCheckbox={updateLanguages}
+      selected={selectedLanguages}
       name="languages"
     />
   );

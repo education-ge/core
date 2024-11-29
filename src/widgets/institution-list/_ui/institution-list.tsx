@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, PropsWithChildren } from "react";
 import { cn } from "@/shared/ui/utils";
 import { Skeleton } from "@/shared/ui";

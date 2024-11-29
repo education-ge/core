@@ -2,10 +2,10 @@
 
 import { ChangeEvent, FC, useState } from "react";
 import { cn } from "@/shared/ui/utils";
-import { FilterCheckboxProps } from "../_model/types/filter-checkbox";
 import { Input, Skeleton } from "@/shared/ui";
 import { FilterCheckbox } from "./filter-checkbox";
 import { useTranslations } from "next-intl";
+import { FilterCheckboxProps } from "../_model/types/filter-checkbox";
 
 type Item = FilterCheckboxProps;
 
@@ -31,7 +31,6 @@ export const CheckboxGroup: FC<Props> = ({
   isLoading,
   searchInputPlaceholder,
   onClickCheckbox,
-  // defaultValue,
   name,
   selected,
   className,

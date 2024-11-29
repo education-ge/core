@@ -1,14 +1,17 @@
 "use client";
 
-import { Locale } from "@/shared/types/language";
 import { useQuery } from "@tanstack/react-query";
 import { getAreaList } from "../services/get-area-list";
+import { useLocale } from "next-intl";
+import { Locale } from "@/shared/types/language";
 import { CityId } from "@/shared/types/city";
 
-export const useGetAreaList = (locale: Locale, cityId: CityId) => {
+export const useGetAreaList = () => {
+  const locale = useLocale() as Locale;
+
   const query = useQuery({
-    queryKey: ["cities", locale, cityId],
-    queryFn: () => getAreaList(locale, cityId),
+    queryKey: ["cities", locale, 1],
+    queryFn: () => getAreaList(locale, 1 as CityId),
   });
 
   return query;

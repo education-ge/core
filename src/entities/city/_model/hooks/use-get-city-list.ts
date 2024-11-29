@@ -6,11 +6,11 @@ import { useQuery } from "@tanstack/react-query";
 import { getCityList } from "../services/get-city-list";
 
 export const useGetCityList = () => {
-  const locale = useLocale();
+  const locale = useLocale() as Locale;
 
   const query = useQuery({
     queryKey: ["cities", locale],
-    queryFn: () => getCityList(locale as Locale),
+    queryFn: () => getCityList(locale),
   });
 
   return query;
