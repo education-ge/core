@@ -1,4 +1,5 @@
 import { getSchoolList } from "@/entities/school/server";
+import { FilterSearchParams } from "@/features/filters/server";
 import { Locale } from "@/shared/types/language";
 import { Container } from "@/shared/ui";
 import { Filters } from "@/widgets/filters/server";
@@ -11,7 +12,7 @@ export default async function SchoolsPage({
   params: Promise<{
     locale: Locale;
   }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+  searchParams: Promise<FilterSearchParams>;
 }) {
   const resolvedParams = await params;
   const resolvedSearchParams = await searchParams;
