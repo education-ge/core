@@ -16,7 +16,7 @@ export const TopbarFilters: FC<Props> = ({ searchParams }) => {
 
   return (
     <div className="border-b sticky top-0 z-20 bg-white">
-      <Container className="flex justify-center items-center h-12">
+      <Container className="flex items-center h-12">
         <div className="font-bold">132 results</div>
         <div className="flex-grow px-4">
           <Button

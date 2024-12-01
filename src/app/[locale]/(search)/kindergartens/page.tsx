@@ -24,7 +24,7 @@ export default async function KindergartensPage({
   return (
     <Container className="mt-4 flex">
       <SidebarFilters searchParams={resolvedSearchParams} />
-      <div className="flex-1 ml-4 h-[2000px]">
+      <div className="flex-grow ml-4">
         <InstitutionList>
           {schools.map((item) => (
             <KindergartenListCard key={item.id} kindergarten={item} />

@@ -13,7 +13,7 @@ export default async function Layout({
   const resolvedSearchParams = (await searchParams) || {};
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col min-h-screen">
       <AppHeader navigation />
       <TopbarFilters searchParams={resolvedSearchParams} />
       <main className="flex-grow">{children}</main>
