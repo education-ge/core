@@ -1,5 +1,5 @@
 import { AppFooter } from "@/widgets/app-footer";
-import { AppHeader } from "@/widgets/app-header";
+import { AppHeader } from "@/widgets/app-header/server";
 
 export default async function Layout({
   children,

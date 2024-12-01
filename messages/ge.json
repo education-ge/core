@@ -29,6 +29,9 @@
       "hide": "დამალვა",
       "showAll": "ყველას ჩვენება"
     },
-    "clear": "წმინდა"
+    "clearFilters": "გამწმენდი ფილტრები"
+  },
+  "LanguageSwitcher": {
+    "selectLanguage": "აირჩიეთ ენა:"
   }
 }

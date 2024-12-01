@@ -15,3 +15,14 @@ export {
 } from "./card";
 
 export { HoverCard, HoverCardContent, HoverCardTrigger } from "./hover-card";
+
+export {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+} from "./dropdown-menu";

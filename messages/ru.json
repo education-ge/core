@@ -29,6 +29,9 @@
       "hide": "Скрыть",
       "showAll": "Показать все"
     },
-    "clear": "Очистить"
+    "clearFilters": "Сбросить фильтры"
+  },
+  "LanguageSwitcher": {
+    "selectLanguage": "Выберите язык:"
   }
 }

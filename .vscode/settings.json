@@ -8,5 +8,5 @@
     "src/app/api/languages"
   ],
   "i18n-ally.keystyle": "nested",
-  "cSpell.words": ["Batumi", "turbopack"]
+  "cSpell.words": ["Batumi", "Topbar", "turbopack"]
 }

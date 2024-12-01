@@ -3,7 +3,7 @@ import { FilterSearchParams } from "@/features/filters/server";
 import { KindergartenListCard } from "@/features/kindergarten/server";
 import { Locale } from "@/shared/types/language";
 import { Container } from "@/shared/ui";
-import { Filters } from "@/widgets/filters/server";
+import { SidebarFilters } from "@/widgets/filters/client";
 import { InstitutionList } from "@/widgets/institution-list";
 
 export default async function KindergartensPage({
@@ -23,8 +23,8 @@ export default async function KindergartensPage({
 
   return (
     <Container className="mt-4 flex">
-      <Filters searchParams={resolvedSearchParams} />
-      <div className="flex-1 ml-4">
+      <SidebarFilters searchParams={resolvedSearchParams} />
+      <div className="flex-1 ml-4 h-[2000px]">
         <InstitutionList>
           {schools.map((item) => (
             <KindergartenListCard key={item.id} kindergarten={item} />

@@ -1,64 +1,71 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useLocale } from "next-intl";
-import { useRef, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
+import {
+  Button,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenu,
+} from "@/shared/ui";
+import { Locale } from "@/shared/types/language";
 
 export const LanguageSwitcher = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const t = useTranslations("LanguageSwitcher");
   const router = useRouter();
-  const locale = useLocale();
+  const locale = useLocale() as Locale;
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const ref = useRef(null);
 
-  const availableLocales = [
-    { code: "en", name: "English" },
-    { code: "ge", name: "ქართული" },
-    { code: "ru", name: "Русский" },
+  const availableLanguages: { locale: Locale; name: string }[] = [
+    { locale: "en", name: "English" },
+    { locale: "ge", name: "ქართული" },
+    { locale: "ru", name: "Русский" },
   ];
 
-  const changeLanguage = (newLocale: string) => {
-    setIsOpen(false);
-
+  const changeLanguage = (newLocale: Locale) => {
     const newPathname = pathname.replace(`/${locale}`, `/${newLocale}`);
 
     router.replace(`${newPathname}?${searchParams.toString()}`);
   };
 
   return (
-    <div className="relative z-50">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex p-2 rounded-md items-center text-white hover:bg-gray-800"
-      >
-        {locale.toUpperCase()}
-      </button>
-
-      {isOpen && (
-        <ul
-          ref={ref}
-          className="absolute right-0 transform bg-white border mt-2 w-24 rounded-md"
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant={"ghost"}
+          className="flex items-center gap-1 text-white hover:bg-gray-800 hover:text-white uppercase"
         >
-          {availableLocales.map((lang) => (
-            <li key={lang.code}>
-              <button
-                className="flex items-center gap-1 text-left py-2 px-4 hover:bg-gray-100"
-                onClick={() => changeLanguage(lang.code)}
-              >
-                <Image
-                  width={40}
-                  height={40}
-                  alt={`Language ${lang.name}`}
-                  src={`/flags/${lang.code}.svg`}
-                />
-                {lang.code.toLocaleUpperCase()}
-              </button>
-            </li>
+          {locale}
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>{t("selectLanguage")}</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+
+        <DropdownMenuRadioGroup
+          value={locale}
+          onValueChange={(newLocale) => changeLanguage(newLocale as Locale)}
+        >
+          {availableLanguages.map((lang) => (
+            <DropdownMenuRadioItem key={lang.locale} value={lang.locale}>
+              <Image
+                width={25}
+                height={25}
+                alt={`Language ${lang.name}`}
+                src={`/flags/${lang.locale}.svg`}
+                className="mr-2 inline-block"
+              />
+              {lang.name}
+            </DropdownMenuRadioItem>
           ))}
-        </ul>
-      )}
-    </div>
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };

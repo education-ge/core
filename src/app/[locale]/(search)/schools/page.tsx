@@ -2,7 +2,7 @@ import { getSchoolList } from "@/entities/school/server";
 import { FilterSearchParams } from "@/features/filters/server";
 import { Locale } from "@/shared/types/language";
 import { Container } from "@/shared/ui";
-import { Filters } from "@/widgets/filters/server";
+import { SidebarFilters } from "@/widgets/filters/client";
 import { InstitutionList } from "@/widgets/institution-list";
 
 export default async function SchoolsPage({
@@ -22,7 +22,7 @@ export default async function SchoolsPage({
 
   return (
     <Container className="mt-4 flex">
-      <Filters searchParams={resolvedSearchParams} />
+      <SidebarFilters searchParams={resolvedSearchParams} />
       <div className="flex-1 ml-4">
         <InstitutionList>
           {schools.map((item) => (

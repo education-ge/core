@@ -29,6 +29,9 @@
       "hide": "Hide",
       "showAll": "Show all"
     },
-    "clear": "Clear"
+    "clearFilters": "Clear Filters"
+  },
+  "LanguageSwitcher": {
+    "selectLanguage": "Select language:"
   }
 }
